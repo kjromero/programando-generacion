@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Sora:wght@300;400;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,30 +6,30 @@
 
 @layer base {
   :root {
-    /* Colombian inspired palette - vibrant greens, golden yellows, tech blues */
-    --background: 120 20% 98%;
-    --foreground: 160 30% 10%;
+    /* Colors based on the design: primary-green #00D98E, tech-blue #0066FF, sun-yellow #FFB800 */
+    --background: 44 100% 97%;  /* light-cream #FFF8F0 */
+    --foreground: 0 0% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 160 30% 10%;
+    --card-foreground: 0 0% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 160 30% 10%;
+    --popover-foreground: 0 0% 10%;
 
-    /* Primary: Vibrant green (nature, hope, agriculture) */
-    --primary: 142 76% 36%;
+    /* Primary: #00D98E (primary-green) */
+    --primary: 162 100% 43%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: Golden yellow (energy, sun, Colombia) */
-    --secondary: 45 93% 47%;
-    --secondary-foreground: 160 30% 10%;
+    /* Secondary: #FFB800 (sun-yellow) */
+    --secondary: 44 100% 50%;
+    --secondary-foreground: 0 0% 10%;
 
-    /* Muted: Soft sage */
-    --muted: 120 20% 94%;
-    --muted-foreground: 160 15% 40%;
+    /* Muted */
+    --muted: 44 100% 97%;
+    --muted-foreground: 0 0% 40%;
 
-    /* Accent: Tech blue */
-    --accent: 200 85% 50%;
+    /* Accent: #0066FF (tech-blue) */
+    --accent: 220 100% 50%;
     --accent-foreground: 0 0% 100%;
 
     /* Destructive */
@@ -37,46 +37,43 @@
     --destructive-foreground: 0 0% 100%;
 
     /* Borders and inputs */
-    --border: 120 15% 85%;
-    --input: 120 15% 85%;
-    --ring: 142 76% 36%;
+    --border: 0 0% 85%;
+    --input: 0 0% 85%;
+    --ring: 162 100% 43%;
 
-    --radius: 0.75rem;
+    --radius: 1.25rem;
 
-    /* Custom colors for the design */
-    --nature-green: 142 76% 36%;
-    --nature-green-light: 142 60% 55%;
-    --nature-green-dark: 142 80% 25%;
-    --golden-sun: 45 93% 47%;
-    --golden-sun-light: 45 95% 65%;
-    --tech-blue: 200 85% 50%;
-    --tech-blue-light: 200 80% 65%;
-    --earth-brown: 30 30% 35%;
-    --sky-blue: 200 70% 90%;
-    --cream: 40 40% 95%;
+    /* Custom colors matching the design */
+    --primary-green: 162 100% 43%;     /* #00D98E */
+    --tech-blue: 220 100% 50%;         /* #0066FF */
+    --sun-yellow: 44 100% 50%;         /* #FFB800 */
+    --earth-orange: 13 100% 60%;       /* #FF6B35 */
+    --sky-cyan: 194 100% 50%;          /* #00C2FF */
+    --field-green: 122 39% 49%;        /* #4CAF50 */
+    --dark-bg: 156 52% 8%;             /* #0A1F1A */
+    --light-cream: 44 100% 97%;        /* #FFF8F0 */
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(142 76% 36%) 0%, hsl(200 85% 50%) 100%);
-    --gradient-golden: linear-gradient(135deg, hsl(45 93% 47%) 0%, hsl(35 90% 55%) 100%);
-    --gradient-nature: linear-gradient(180deg, hsl(142 60% 55%) 0%, hsl(142 76% 36%) 100%);
-    --gradient-tech: linear-gradient(135deg, hsl(200 85% 50%) 0%, hsl(220 80% 45%) 100%);
-    --gradient-overlay: linear-gradient(180deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%);
+    --gradient-hero: linear-gradient(135deg, #00D98E 0%, #0066FF 100%);
+    --gradient-golden: linear-gradient(135deg, #FFB800 0%, #FF6B35 100%);
+    --gradient-nature: linear-gradient(90deg, #4CAF50, #00D98E);
+    --gradient-tech: linear-gradient(135deg, #0066FF 0%, #00C2FF 100%);
 
     /* Shadows */
-    --shadow-card: 0 4px 20px -4px hsl(142 76% 36% / 0.15);
-    --shadow-elevated: 0 12px 40px -8px hsl(160 30% 10% / 0.2);
-    --shadow-glow-primary: 0 0 40px hsl(142 76% 36% / 0.4);
-    --shadow-glow-accent: 0 0 40px hsl(200 85% 50% / 0.4);
+    --shadow-card: 0 15px 40px rgba(0, 0, 0, 0.08);
+    --shadow-elevated: 0 20px 60px rgba(0, 0, 0, 0.15);
+    --shadow-glow-primary: 0 0 40px rgba(0, 217, 142, 0.4);
+    --shadow-glow-accent: 0 0 40px rgba(0, 102, 255, 0.4);
 
     /* Sidebar */
-    --sidebar-background: 120 20% 97%;
-    --sidebar-foreground: 160 30% 10%;
-    --sidebar-primary: 142 76% 36%;
+    --sidebar-background: 44 100% 97%;
+    --sidebar-foreground: 0 0% 10%;
+    --sidebar-primary: 162 100% 43%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 120 20% 94%;
-    --sidebar-accent-foreground: 160 30% 10%;
-    --sidebar-border: 120 15% 85%;
-    --sidebar-ring: 142 76% 36%;
+    --sidebar-accent: 44 100% 94%;
+    --sidebar-accent-foreground: 0 0% 10%;
+    --sidebar-border: 0 0% 85%;
+    --sidebar-ring: 162 100% 43%;
   }
 
   .dark {
@@ -130,11 +127,12 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Outfit', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
   }
 }
 
@@ -196,15 +194,65 @@
 
 @layer utilities {
   .animate-float {
-    animation: float 6s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;
   }
 
   .animate-pulse-slow {
     animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 
+  .animate-slide-in-left {
+    animation: slideInLeft 1s ease-out;
+  }
+
+  .animate-slide-in-right {
+    animation: slideInRight 1s ease-out;
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out;
+  }
+
   @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-20px); }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes patternMove {
+    0% { transform: translateX(0) translateY(0); }
+    100% { transform: translateX(40px) translateY(40px); }
   }
 }

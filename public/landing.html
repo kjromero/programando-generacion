@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programando una Generación | Tecnología Rural Colombia</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-green: #00D98E;
+            --tech-blue: #0066FF;
+            --sun-yellow: #FFB800;
+            --earth-orange: #FF6B35;
+            --sky-cyan: #00C2FF;
+            --field-green: #4CAF50;
+            --dark-bg: #0A1F1A;
+            --light-cream: #FFF8F0;
+            --gradient-start: #00D98E;
+            --gradient-end: #0066FF;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: #1a1a1a;
+            overflow-x: hidden;
+            background: var(--light-cream);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-green), var(--tech-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: var(--primary-green);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            min-height: 90vh;
+            background: linear-gradient(135deg, #00D98E 0%, #0066FF 100%);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 4rem 5%;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(255, 184, 0, 0.3) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(0, 217, 142, 0.4) 0%, transparent 50%),
+                url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.6;
+            animation: patternMove 20s linear infinite;
+        }
+
+        @keyframes patternMove {
+            0% { transform: translateX(0) translateY(0); }
+            100% { transform: translateX(40px) translateY(40px); }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            animation: slideInLeft 1s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-text h2 {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 400;
+            margin-bottom: 3rem;
+            line-height: 1.5;
+            animation: slideInLeft 1s ease-out 0.2s both;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            animation: slideInLeft 1s ease-out 0.4s both;
+        }
+
+        .btn {
+            padding: 1.2rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--tech-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--tech-blue);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 500px;
+            animation: slideInRight 1s ease-out 0.3s both;
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .card-1 {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            top: 40%;
+            right: 5%;
+            animation-delay: 1s;
+        }
+
+        .card-3 {
+            bottom: 15%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-text {
+            font-weight: 600;
+            color: var(--tech-blue);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--tech-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        /* Purpose Section */
+        .purpose-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .purpose-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: #444;
+        }
+
+        .purpose-text strong {
+            color: var(--tech-blue);
+            font-weight: 700;
+        }
+
+        .purpose-visual {
+            background: linear-gradient(135deg, rgba(0, 217, 142, 0.1), rgba(0, 102, 255, 0.1));
+            border-radius: 30px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .stat-box {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin: 1rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--tech-blue);
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        /* Objectives Grid */
+        .objectives-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .objective-card {
+            background: white;
+            border-radius: 25px;
+            padding: 2.5rem;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .objective-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-green), var(--tech-blue));
+        }
+
+        .objective-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .objective-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .objective-card h3 {
+            font-size: 1.5rem;
+            color: var(--tech-blue);
+            margin-bottom: 1rem;
+        }
+
+        .objective-card p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* Why Section */
+        .why-section {
+            background: linear-gradient(135deg, var(--dark-bg), #1a3d2e);
+            color: white;
+            border-radius: 40px;
+            padding: 5rem 4rem;
+            margin: 4rem 0;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .why-item {
+            text-align: center;
+        }
+
+        .why-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-green), var(--sun-yellow));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.5rem;
+        }
+
+        .why-item h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .why-item p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.7;
+        }
+
+        /* How it Works */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary-green), var(--tech-blue));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:first-child {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content:last-child {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 30px;
+            height: 30px;
+            background: var(--sun-yellow);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 0 8px rgba(255, 184, 0, 0.2);
+            z-index: 10;
+        }
+
+        .timeline-step {
+            font-size: 1rem;
+            color: var(--primary-green);
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--tech-blue);
+        }
+
+        /* Benefits */
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+        }
+
+        .benefit-card {
+            background: linear-gradient(135deg, rgba(0, 217, 142, 0.05), rgba(0, 102, 255, 0.05));
+            border-radius: 25px;
+            padding: 3rem;
+            border-left: 5px solid var(--primary-green);
+            transition: all 0.3s;
+        }
+
+        .benefit-card:hover {
+            transform: translateX(10px);
+            border-left-color: var(--tech-blue);
+        }
+
+        .benefit-card h3 {
+            font-size: 1.6rem;
+            color: var(--tech-blue);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Impact Stats */
+        .impact-section {
+            background: linear-gradient(135deg, var(--primary-green), var(--tech-blue));
+            color: white;
+            border-radius: 40px;
+            padding: 5rem 4rem;
+            text-align: center;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .impact-stat {
+            padding: 2rem;
+        }
+
+        .impact-number {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .impact-label {
+            font-size: 1.2rem;
+            opacity: 0.95;
+        }
+
+        /* Testimonials */
+        .testimonials-slider {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            font-size: 6rem;
+            color: var(--primary-green);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-green), var(--tech-blue));
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--tech-blue);
+        }
+
+        .testimonial-location {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        /* Featured Success Story */
+        .featured-success {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            margin-bottom: 4rem;
+        }
+
+        .success-image-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .success-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .success-photo:hover {
+            transform: scale(1.05);
+        }
+
+        .success-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: linear-gradient(135deg, var(--sun-yellow), var(--earth-orange));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .success-content {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .success-content h3 {
+            font-size: 2.2rem;
+            color: var(--tech-blue);
+            margin-bottom: 2rem;
+        }
+
+        .success-highlight {
+            display: flex;
+            gap: 1.5rem;
+            background: linear-gradient(135deg, rgba(0, 217, 142, 0.05), rgba(0, 102, 255, 0.05));
+            padding: 2rem;
+            border-radius: 20px;
+            margin-bottom: 2rem;
+        }
+
+        .highlight-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+        }
+
+        .success-highlight h4 {
+            font-size: 1.4rem;
+            color: var(--primary-green);
+            margin-bottom: 0.8rem;
+        }
+
+        .success-highlight p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .success-stats-mini {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .mini-stat {
+            text-align: center;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 15px;
+            border: 2px solid rgba(0, 217, 142, 0.2);
+        }
+
+        .mini-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--tech-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .mini-label {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .success-quote {
+            background: var(--dark-bg);
+            color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            border-left: 5px solid var(--primary-green);
+        }
+
+        .success-quote p {
+            font-style: italic;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .success-quote span {
+            color: var(--sun-yellow);
+            font-weight: 600;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #FFB800, #FF6B35);
+            border-radius: 40px;
+            padding: 5rem 4rem;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .cta-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            position: relative;
+        }
+
+        .cta-card {
+            background: white;
+            color: #333;
+            border-radius: 20px;
+            padding: 3rem 2rem;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cta-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-card h3 {
+            font-size: 1.6rem;
+            color: var(--tech-blue);
+            margin-bottom: 1rem;
+        }
+
+        .cta-emoji {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--primary-green), var(--sun-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-brand p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.8;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+            color: var(--primary-green);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .social-links a:hover {
+            background: var(--primary-green);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .colombia-map {
+            background: linear-gradient(135deg, rgba(0, 217, 142, 0.1), rgba(0, 102, 255, 0.1));
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .map-placeholder {
+            font-size: 5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Inspirational Quotes */
+        .quote-banner {
+            background: linear-gradient(90deg, var(--field-green), var(--primary-green));
+            color: white;
+            padding: 3rem 5%;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            font-style: italic;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .quote-banner::before,
+        .quote-banner::after {
+            content: '✨';
+            position: absolute;
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        .quote-banner::before {
+            top: 1rem;
+            left: 5%;
+        }
+
+        .quote-banner::after {
+            bottom: 1rem;
+            right: 5%;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .purpose-content,
+            .timeline-item,
+            .featured-success {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .impact-grid,
+            .cta-grid,
+            .testimonials-slider {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text h2 {
+                font-size: 1.3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .objectives-grid,
+            .benefits-grid,
+            .impact-grid,
+            .cta-grid,
+            .testimonials-slider,
+            .success-stats-mini {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .quote-banner {
+                font-size: 1.3rem;
+            }
+
+            .success-content {
+                padding: 2rem;
+            }
+
+            .success-content h3 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <div class="logo">🌱 Programando una Generación</div>
+            <ul class="nav-links">
+                <li><a href="#proposito">Propósito</a></li>
+                <li><a href="#objetivos">Objetivos</a></li>
+                <li><a href="#como-funciona">Cómo Funciona</a></li>
+                <li><a href="#impacto">Impacto</a></li>
+                <li><a href="#participar">Participar</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Programando una Generación</h1>
+                <h2>Educando el futuro tecnológico desde los municipios rurales de Colombia</h2>
+                <div class="cta-buttons">
+                    <a href="#participar" class="btn btn-primary">Quiero Participar</a>
+                    <a href="#apoyar" class="btn btn-secondary">Quiero Apoyar</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <div class="card-icon">💻</div>
+                    <div class="card-text">Programación</div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="card-icon">🌾</div>
+                    <div class="card-text">AgroTech</div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="card-icon">🤖</div>
+                    <div class="card-text">Inteligencia Artificial</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Banner 1 -->
+    <div class="quote-banner">
+        "El futuro también nace en el campo"
+    </div>
+
+    <!-- Purpose Section -->
+    <section id="proposito">
+        <div class="section-header fade-in-up">
+            <h2 class="section-title">Nuestro Propósito</h2>
+            <p class="section-subtitle">Transformando municipios rurales en centros de innovación tecnológica</p>
+        </div>
+        <div class="purpose-content">
+            <div class="purpose-text">
+                <p>
+                    <strong>Programando una Generación</strong> nace con la misión de cerrar la brecha tecnológica entre los municipios rurales y las grandes ciudades de Colombia.
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    Creemos que el talento no tiene fronteras geográficas. Los jóvenes de nuestros municipios merecen las mismas oportunidades de aprender, innovar y construir el futuro digital de Colombia.
+                </p>
+                <p style="margin-top: 1.5rem;">
+                    Nuestro programa es <strong>inspiracional y transformacional</strong>, diseñado para empoderar a una nueva generación de desarrolladores, innovadores y líderes tecnológicos que impulsarán la competitividad de sus comunidades.
+                </p>
+            </div>
+            <div class="purpose-visual">
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Compromiso con la ruralidad</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">∞</div>
+                    <div class="stat-label">Oportunidades para crecer</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Generación a la vez</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Objectives Section -->
+    <section id="objetivos">
+        <div class="section-header">
+            <h2 class="section-title">¿Qué Aprenderás?</h2>
+            <p class="section-subtitle">Un programa integral diseñado para tu éxito tecnológico</p>
+        </div>
+        <div class="objectives-grid">
+            <div class="objective-card">
+                <span class="objective-icon">👨‍💻</span>
+                <h3>Programación Básica</h3>
+                <p>Aprende los fundamentos de la programación con lenguajes modernos y metodologías prácticas que te prepararán para cualquier desafío tecnológico.</p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">🤖</span>
+                <h3>Inteligencia Artificial</h3>
+                <p>Descubre el poder de la IA y aprende a crear soluciones inteligentes que pueden transformar la agricultura y tu comunidad.</p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">🚀</span>
+                <h3>Proyectos Reales</h3>
+                <p>Trabaja en proyectos productivos que resuelven problemas reales de tu municipio y generan impacto desde el primer día.</p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">🌾</span>
+                <h3>Enfoque AgroTech</h3>
+                <p>Especialízate en tecnología aplicada al sector agrícola, el corazón económico de nuestros municipios rurales.</p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">🤝</span>
+                <h3>Comunidad Tech</h3>
+                <p>Conéctate con otros jóvenes apasionados por la tecnología y construye una red de apoyo que durará toda tu carrera.</p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">👥</span>
+                <h3>Tutorías Personalizadas</h3>
+                <p>Recibe acompañamiento individual de expertos que se preocupan por tu crecimiento y éxito personal.</p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">💻</span>
+                <h3>Incentivos</h3>
+                <p>Los estudiantes más destacados recibirán computadores para continuar su camino en la tecnología.</p>
+            </div>
+            <div class="objective-card">
+                <span class="objective-icon">🌟</span>
+                <h3>Crecimiento Personal</h3>
+                <p>Desarrolla habilidades blandas, liderazgo y confianza con retroalimentación constante y motivación.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Banner 2 -->
+    <div class="quote-banner" style="background: linear-gradient(90deg, var(--tech-blue), var(--sky-cyan));">
+        "La tecnología también crece aquí"
+    </div>
+
+    <!-- Why Section -->
+    <section>
+        <div class="why-section">
+            <div class="section-header">
+                <h2 class="section-title" style="color: white; background: linear-gradient(135deg, var(--sun-yellow), white); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">¿Por Qué Existe Este Programa?</h2>
+                <p class="section-subtitle" style="color: rgba(255, 255, 255, 0.9);">La realidad que queremos cambiar</p>
+            </div>
+            <div class="why-grid">
+                <div class="why-item">
+                    <div class="why-icon">📊</div>
+                    <h3>Brecha Tecnológica</h3>
+                    <p>Los municipios rurales enfrentan una enorme desventaja en acceso a educación tecnológica comparado con las ciudades principales.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🎓</div>
+                    <h3>Pocas Oportunidades</h3>
+                    <p>La mayoría de jóvenes rurales no tienen acceso a programas de formación en programación, IA o tecnologías emergentes.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🖥️</div>
+                    <h3>Falta de Recursos</h3>
+                    <p>Muchos municipios carecen de computadores e Internet confiable, limitando el desarrollo de habilidades digitales.</p>
+                </div>
+                <div class="why-item">
+                    <div class="why-icon">🇨🇴</div>
+                    <h3>Desarrollo Nacional</h3>
+                    <p>El futuro tecnológico de Colombia depende de incluir a todos sus territorios en la revolución digital.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it Works -->
+    <section id="como-funciona">
+        <div class="section-header">
+            <h2 class="section-title">¿Cómo Funciona?</h2>
+            <p class="section-subtitle">Un programa diseñado para tu realidad y tu éxito</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-step">PASO 1</div>
+                    <h3>Modalidad Mixta</h3>
+                    <p>Combinamos sesiones presenciales en tu municipio con contenido virtual flexible, adaptándonos a tu disponibilidad y conectividad.</p>
+                </div>
+                <div class="timeline-content">
+                    <span style="font-size: 4rem; text-align: center; display: block;">🏫</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span style="font-size: 4rem; text-align: center; display: block;">⏱️</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-step">PASO 2</div>
+                    <h3>Duración Flexible</h3>
+                    <p>Elige entre cursos de 3 o 6 meses según tus objetivos. Ambos incluyen certificación y proyectos prácticos.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-step">PASO 3</div>
+                    <h3>Recursos Garantizados</h3>
+                    <p>Si tu municipio no cuenta con computadores e Internet, te los proporcionamos. Nadie se queda atrás por falta de equipos.</p>
+                </div>
+                <div class="timeline-content">
+                    <span style="font-size: 4rem; text-align: center; display: block;">💻</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <span style="font-size: 4rem; text-align: center; display: block;">📚</span>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-step">PASO 4</div>
+                    <h3>Acceso a Platzi</h3>
+                    <p>Todos los participantes reciben suscripción a Platzi para complementar su formación con miles de cursos adicionales.</p>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-step">PASO 5</div>
+                    <h3>Proyectos AgroTech</h3>
+                    <p>Aprende haciendo. Trabajarás en proyectos reales del sector agroindustrial de tu región, generando valor desde el día uno.</p>
+                </div>
+                <div class="timeline-content">
+                    <span style="font-size: 4rem; text-align: center; display: block;">🌱</span>
+                </div>
+                <div class="timeline-dot"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Banner 3 -->
+    <div class="quote-banner" style="background: linear-gradient(90deg, var(--sun-yellow), var(--earth-orange));">
+        "Desde los municipios, para el mundo"
+    </div>
+
+    <!-- Benefits Section -->
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">Beneficios para Ti</h2>
+            <p class="section-subtitle">Más que un curso, una transformación de vida</p>
+        </div>
+        <div class="benefits-grid">
+            <div class="benefit-card">
+                <h3><span>🚀</span> Habilidades del Futuro</h3>
+                <p>Domina las tecnologías más demandadas del mercado laboral: programación, IA, desarrollo web y análisis de datos aplicados al agro.</p>
+            </div>
+            <div class="benefit-card">
+                <h3><span>💼</span> Empleabilidad</h3>
+                <p>Prepárate para trabajos remotos, freelancing internacional y oportunidades en empresas tech sin salir de tu municipio.</p>
+            </div>
+            <div class="benefit-card">
+                <h3><span>🤝</span> Red de Apoyo</h3>
+                <p>Construye relaciones duraderas con mentores, compañeros y profesionales que te acompañarán en tu carrera.</p>
+            </div>
+            <div class="benefit-card">
+                <h3><span>🌟</span> Comunidad Tech</h3>
+                <p>Sé parte de la primera generación de desarrolladores tech de tu municipio y lidera la transformación digital local.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Impact Section -->
+    <section>
+        <div class="impact-section" id="impacto">
+            <h2 style="font-size: 3.5rem; margin-bottom: 1rem;">Nuestro Impacto Esperado</h2>
+            <p style="font-size: 1.4rem; opacity: 0.95; margin-bottom: 2rem;">Juntos construimos el futuro tecnológico rural de Colombia</p>
+            <div class="impact-grid">
+                <div class="impact-stat">
+                    <div class="impact-number">1000+</div>
+                    <div class="impact-label">Jóvenes Formados</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">50+</div>
+                    <div class="impact-label">Municipios Impactados</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">200+</div>
+                    <div class="impact-label">Proyectos Productivos</div>
+                </div>
+                <div class="impact-stat">
+                    <div class="impact-number">100%</div>
+                    <div class="impact-label">Competitividad Regional</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Banner 4 -->
+    <div class="quote-banner" style="background: linear-gradient(90deg, var(--primary-green), var(--field-green));">
+        "Sembrando tecnología, cosechando oportunidades"
+    </div>
+
+    <!-- Primera Generación / Success Stories -->
+    <section>
+        <div class="section-header">
+            <h2 class="section-title">Primera Generación de Graduados</h2>
+            <p class="section-subtitle">El inicio de una transformación tecnológica rural</p>
+        </div>
+
+        <!-- Featured Success Story - Tenjo -->
+        <div class="featured-success">
+            <div class="success-image-container">
+                <img src="/programando-generacion/assets/students-tenjo-dev-C3l58Spq.jpg" alt="Primera generación de graduados en Tenjo, Cundinamarca" class="success-photo">
+                <div class="success-badge">🎓 Primera Generación</div>
+            </div>
+            <div class="success-content">
+                <h3>Tenjo, Cundinamarca - 2024</h3>
+                <div class="success-highlight">
+                    <div class="highlight-icon">✨</div>
+                    <div>
+                        <h4>Programa Piloto Exitoso</h4>
+                        <p>El municipio de Tenjo fue el primero en creer en nuestra visión. Estos jóvenes pioneros demostraron que el talento tecnológico no tiene fronteras geográficas.</p>
+                    </div>
+                </div>
+                <div class="success-stats-mini">
+                    <div class="mini-stat">
+                        <div class="mini-number">5</div>
+                        <div class="mini-label">Graduados</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-number">60</div>
+                        <div class="mini-label">Horas</div>
+                    </div>
+                    <div class="mini-stat">
+                        <div class="mini-number">100%</div>
+                        <div class="mini-label">Certificados</div>
+                    </div>
+                </div>
+                <div class="success-quote">
+                    <p>"Estos jóvenes son la prueba viviente de que cuando se brindan las oportunidades adecuadas, el talento rural florece. Hoy son programadores, mañana serán los líderes tecnológicos de sus comunidades."</p>
+                    <span>- Equipo Programando una Generación</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Other Testimonials -->
+        <div class="section-header" style="margin-top: 5rem;">
+            <h2 class="section-title">Más Historias que Inspiran</h2>
+        </div>
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-image">👨</div>
+                <p class="testimonial-text">Nunca pensé que desde mi municipio podría aprender programación. Ahora estoy desarrollando una app para optimizar el riego de cultivos de café.</p>
+                <div class="testimonial-author">Manuel José</div>
+                <div class="testimonial-location">Tenjo, Cundinamarca</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-image">👩</div>
+                <p class="testimonial-text">El programa me dio las herramientas y la confianza para emprender. Ahora trabajo como desarrolladora freelance desde mi casa.</p>
+                <div class="testimonial-author">María Fernanda</div>
+                <div class="testimonial-location">Tenjo, Cundinamarca</div>
+            </div>
+            <div class="testimonial-card">
+                <div class="testimonial-image">👨</div>
+                <p class="testimonial-text">Aprendí a usar IA para analizar datos de producción agrícola. Mi familia nunca imaginó que la tecnología podría ayudar tanto en el campo.</p>
+                <div class="testimonial-author">Andrés Sarmiento</div>
+                <div class="testimonial-location">Tenjo, Cundinamarca</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="participar">
+        <div class="cta-section">
+            <h2>¿Listo para Transformar tu Futuro?</h2>
+            <p style="font-size: 1.4rem; margin-bottom: 2rem;">Únete a la generación que llevará la tecnología a todos los rincones de Colombia</p>
+            <div class="cta-grid">
+                <div class="cta-card">
+                    <span class="cta-emoji">🎓</span>
+                    <h3>Jóvenes</h3>
+                    <p>Si tienes entre 14 y 28 años y vives en un municipio rural, esta es tu oportunidad. Inscríbete ahora.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Inscribirme</a>
+                </div>
+                <div class="cta-card">
+                    <span class="cta-emoji">🏛️</span>
+                    <h3>Municipios</h3>
+                    <p>¿Tu municipio quiere ser parte? Contáctanos para llevar el programa a tu comunidad.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Contactar</a>
+                </div>
+                <div class="cta-card">
+                    <span class="cta-emoji">🤝</span>
+                    <h3>Empresas</h3>
+                    <p>Patrocina el programa y ayuda a formar el talento tecnológico rural de Colombia.</p>
+                    <a href="#" class="btn btn-primary" style="margin-top: 1.5rem;">Ser Patrocinador</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>🌱 Programando una Generación</h3>
+                <p>Construyendo el futuro tecnológico de Colombia desde sus municipios rurales. Un programa que cree en el talento sin fronteras.</p>
+                <div class="social-links">
+                    <a href="#">📘</a>
+                    <a href="#">📸</a>
+                    <a href="#">🐦</a>
+                    <a href="#">💼</a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Programa</h4>
+                <ul class="footer-links">
+                    <li><a href="#proposito">Propósito</a></li>
+                    <li><a href="#objetivos">Objetivos</a></li>
+                    <li><a href="#como-funciona">Cómo Funciona</a></li>
+                    <li><a href="#impacto">Impacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Participa</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Jóvenes</a></li>
+                    <li><a href="#">Municipios</a></li>
+                    <li><a href="#">Empresas</a></li>
+                    <li><a href="#">Voluntarios</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul class="footer-links">
+                    <li><a href="mailto:netbrake@gmail.com">netbrake@gmail.com</a></li>
+                    <li><a href="tel:+573124887347">+57 312 488 7347</a></li>
+                    <li>Bogotá, Colombia</li>
+                </ul>
+            </div>
+        </div>
+        <div class="colombia-map">
+            <div class="map-placeholder">🇨🇴</div>
+            <p style="font-size: 1.1rem; color: #666; margin-top: 1rem;">
+                Próximamente en todo Colombia<br>
+                <strong style="color: var(--tech-blue);">Tabio • Tenjo</strong>
+            </p>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Programando una Generación. Todos los derechos reservados. | Hecho con 💚 para Colombia rural</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'fadeInUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
