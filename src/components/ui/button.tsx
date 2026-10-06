@@ -5,28 +5,40 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-semibold ring-offset-background transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full text-sm font-semibold ring-offset-background transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5",
+        /* Primary action: deep brand ink, premium and quiet */
+        default:
+          "bg-ink text-cream hover:bg-ink-soft shadow-sm-soft hover:shadow-card active:scale-[0.98]",
+        /* Brand green action */
+        primary:
+          "bg-primary text-primary-foreground hover:bg-nature-dark shadow-sm-soft hover:shadow-glow-primary active:scale-[0.98]",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary hover:text-primary-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:shadow-lg",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        // Hero variants for the landing page
-        hero: "bg-gradient-hero text-primary-foreground shadow-lg hover:shadow-glow-primary hover:-translate-y-1 active:translate-y-0",
-        heroOutline: "border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground/10 backdrop-blur-sm",
-        golden: "bg-gradient-golden text-secondary-foreground shadow-lg hover:shadow-xl hover:-translate-y-1",
-        tech: "bg-gradient-tech text-accent-foreground shadow-lg hover:shadow-glow-accent hover:-translate-y-1",
-        nature: "bg-nature text-primary-foreground shadow-lg hover:bg-nature-dark hover:-translate-y-0.5",
+        outline:
+          "border border-border bg-transparent text-foreground hover:bg-muted hover:border-foreground/25 active:scale-[0.98]",
+        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/85 shadow-sm-soft",
+        ghost: "hover:bg-muted hover:text-foreground",
+        link: "text-primary underline-offset-4 hover:underline rounded-md",
+        /* On dark backgrounds */
+        onDark:
+          "bg-cream text-ink hover:bg-white shadow-sm-soft active:scale-[0.98]",
+        onDarkOutline:
+          "border border-cream/25 bg-transparent text-cream hover:bg-cream/10 hover:border-cream/45 active:scale-[0.98]",
+        /* Legacy landing-page variants, kept for compatibility */
+        hero: "bg-gradient-hero text-primary-foreground shadow-sm-soft hover:shadow-glow-primary active:scale-[0.98]",
+        heroOutline:
+          "border border-cream/25 bg-transparent text-cream hover:bg-cream/10 backdrop-blur-sm",
+        golden: "bg-secondary text-secondary-foreground shadow-sm-soft hover:shadow-card active:scale-[0.98]",
+        tech: "bg-tech text-accent-foreground shadow-sm-soft hover:shadow-glow-accent active:scale-[0.98]",
+        nature: "bg-primary text-primary-foreground shadow-sm-soft hover:bg-nature-dark active:scale-[0.98]",
       },
       size: {
-        default: "h-10 px-5 py-2",
-        sm: "h-9 rounded-md px-4",
-        lg: "h-12 rounded-xl px-8 text-base",
-        xl: "h-14 rounded-xl px-10 text-lg",
+        default: "h-11 px-6 py-2",
+        sm: "h-9 px-4 text-[0.8125rem]",
+        lg: "h-12 px-7 text-base",
+        xl: "h-14 px-8 text-base",
         icon: "h-10 w-10",
       },
     },

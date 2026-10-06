@@ -1,133 +1,116 @@
 import { motion } from "framer-motion";
-import { GraduationCap, Lightbulb, MapPin, Network } from "lucide-react";
-import colombiaMap from "@/assets/colombia-map-tech.jpg";
+import { Info, Quote } from "lucide-react";
 
-const impactos = [
-  {
-    icon: GraduationCap,
-    value: "1,000+",
-    label: "Jóvenes Formados",
-    description: "Egresados con habilidades tecnológicas reales",
-  },
-  {
-    icon: Lightbulb,
-    value: "100+",
-    label: "Proyectos Productivos",
-    description: "Soluciones tecnológicas para problemas locales",
-  },
-  {
-    icon: MapPin,
-    value: "50+",
-    label: "Municipios",
-    description: "Con presencia tecnológica activa",
-  },
-  {
-    icon: Network,
-    value: "∞",
-    label: "Red de Talento",
-    description: "Comunidad agrícola tecnológica en crecimiento",
-  },
-];
+import Reveal from "@/components/Reveal";
+import SectionHeading from "@/components/SectionHeading";
+import { impactGoals, testimonies, verifiedImpact } from "@/content/generations";
 
 const ImpactoSection = () => {
   return (
-    <section id="impacto" className="section-padding bg-foreground text-primary-foreground relative overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 opacity-20">
-        <img
-          src={colombiaMap}
-          alt="Mapa de Colombia tecnológico"
-          className="w-full h-full object-cover"
+    <section
+      id="impacto"
+      aria-labelledby="impacto-title"
+      className="section-padding relative overflow-hidden bg-ink text-cream"
+    >
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-grid-dark opacity-50"
+      />
+
+      <div className="container-custom relative">
+        <SectionHeading
+          eyebrow="Impacto"
+          tone="dark"
+          title={<span id="impacto-title">Lo que podemos demostrar</span>}
+          description="Separamos a propósito lo alcanzado de lo que aún es una meta. La confianza se construye con cifras verificables."
         />
-      </div>
-      <div className="absolute inset-0 bg-foreground/80" />
 
-      <div className="container-custom relative z-10">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
-          <h2 className="font-display text-4xl md:text-5xl font-bold mb-4">
-            Impacto{" "}
-            <span className="text-golden">esperado</span>
-          </h2>
-          <p className="text-lg text-primary-foreground/80 max-w-2xl mx-auto">
-            Transformando la ruralidad colombiana, un joven a la vez
-          </p>
-        </motion.div>
-
-        {/* Impact Stats */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {impactos.map((impacto, index) => (
+        {/* -------------------------------------------- Verified -------- */}
+        <dl className="mt-14 grid gap-px overflow-hidden rounded-3xl border border-cream/10 bg-cream/10 sm:grid-cols-2 lg:grid-cols-4">
+          {verifiedImpact.map((figure, index) => (
             <motion.div
-              key={impacto.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              whileHover={{ y: -5, transition: { duration: 0.3 } }}
-              className="relative group"
+              key={figure.label}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.5, delay: index * 0.07, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-ink p-7 lg:p-8"
             >
-              <div className="bg-primary-foreground/5 backdrop-blur-sm border border-primary-foreground/10 rounded-2xl p-6 text-center h-full">
-                {/* Icon */}
-                <div className="w-14 h-14 mx-auto rounded-xl bg-gradient-golden flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                  <impacto.icon className="w-7 h-7 text-secondary-foreground" />
-                </div>
-
-                {/* Value */}
-                <div className="font-display text-4xl md:text-5xl font-bold text-nature-light mb-2">
-                  {impacto.value}
-                </div>
-
-                {/* Label */}
-                <div className="font-display font-semibold text-primary-foreground mb-1">
-                  {impacto.label}
-                </div>
-
-                {/* Description */}
-                <p className="text-sm text-primary-foreground/60">{impacto.description}</p>
-              </div>
+              <dd className="font-display text-5xl font-extrabold leading-none tracking-tight text-nature-light">
+                {figure.value}
+              </dd>
+              <dt className="mt-4 font-display text-base font-semibold text-cream">
+                {figure.label}
+              </dt>
+              <p className="mt-2 text-sm leading-relaxed text-cream/55">
+                {figure.detail}
+              </p>
             </motion.div>
           ))}
-        </div>
+        </dl>
 
-        {/* Additional Impact Info */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid md:grid-cols-3 gap-6 text-center"
-        >
-          <div className="p-6 rounded-xl bg-nature/20">
-            <h4 className="font-display font-bold text-xl text-nature-light mb-2">
-              Competitividad Municipal
-            </h4>
-            <p className="text-primary-foreground/70">
-              Municipios rurales compitiendo en igualdad con centros urbanos
+        {/* ----------------------------------------------- Goals -------- */}
+        <Reveal delay={0.1}>
+          <div className="mt-14 rounded-3xl border border-cream/10 p-7 lg:p-9">
+            <p className="flex items-center gap-2 text-sm font-medium text-cream/70">
+              <Info aria-hidden="true" className="h-4 w-4 shrink-0 text-secondary" />
+              Metas del programa — aún no alcanzadas
+            </p>
+
+            <dl className="mt-7 grid gap-7 sm:grid-cols-3">
+              {impactGoals.map((goal) => (
+                <div key={goal.label}>
+                  <dd className="font-display text-3xl font-bold leading-none text-cream/35">
+                    {goal.value}
+                  </dd>
+                  <dt className="mt-3 text-sm font-medium text-cream/60">
+                    {goal.label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mt-7 border-t border-cream/10 pt-6 text-sm leading-relaxed text-cream/45">
+              Publicaremos cada cifra en la columna de resultados verificados a
+              medida que se cumpla, con la evidencia correspondiente.
             </p>
           </div>
-          <div className="p-6 rounded-xl bg-tech/20">
-            <h4 className="font-display font-bold text-xl text-tech-light mb-2">
-              Desarrollo Sostenible
-            </h4>
-            <p className="text-primary-foreground/70">
-              Tecnología al servicio del desarrollo agrícola y ambiental
-            </p>
-          </div>
-          <div className="p-6 rounded-xl bg-golden/20">
-            <h4 className="font-display font-bold text-xl text-golden-light mb-2">
-              Arraigo Territorial
-            </h4>
-            <p className="text-primary-foreground/70">
-              Jóvenes que construyen futuro sin abandonar su territorio
-            </p>
-          </div>
-        </motion.div>
+        </Reveal>
+
+        {/* ------------------------------------------ Testimonies ------- */}
+        <div className="mt-16 md:mt-20">
+          <h3 className="font-display text-xl font-semibold text-cream">
+            Voces del programa
+          </h3>
+
+          <ul className="mt-7 grid gap-5 md:grid-cols-3">
+            {testimonies.map((testimony, index) => (
+              <motion.li
+                key={testimony.name}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-col rounded-2xl border border-cream/10 bg-cream/[0.03] p-6 transition-colors duration-300 hover:bg-cream/[0.06]"
+              >
+                <Quote
+                  aria-hidden="true"
+                  className="h-5 w-5 text-nature-light/40"
+                  strokeWidth={1.5}
+                />
+                <blockquote className="mt-4 flex-1 text-sm leading-relaxed text-cream/80">
+                  {testimony.quote}
+                </blockquote>
+                <footer className="mt-5 border-t border-cream/10 pt-4">
+                  <p className="font-display text-sm font-semibold text-cream">
+                    {testimony.name}
+                  </p>
+                  <p className="mt-0.5 text-xs text-cream/50">{testimony.location}</p>
+                </footer>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
       </div>
     </section>
   );
