@@ -74,15 +74,25 @@ export default {
         earth: "hsl(var(--earth-brown))",
         sky: "hsl(var(--sky-blue))",
         cream: "hsl(var(--cream))",
+        ink: {
+          DEFAULT: "hsl(var(--ink))",
+          soft: "hsl(var(--ink-soft))",
+        },
       },
       borderRadius: {
+        "4xl": "2rem",
+        "3xl": "1.5rem",
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      // Matches the fonts actually imported in src/index.css
       fontFamily: {
-        sans: ['Poppins', 'sans-serif'],
-        display: ['Space Grotesk', 'sans-serif'],
+        sans: ["Outfit", "ui-sans-serif", "system-ui", "sans-serif"],
+        display: ["Sora", "ui-sans-serif", "system-ui", "sans-serif"],
+      },
+      maxWidth: {
+        prose: "68ch",
       },
       keyframes: {
         "accordion-down": {
@@ -113,8 +123,7 @@ export default {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-10px)" },
         },
-      },
-      animation: {
+      },      animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "fade-in": "fade-in 0.6s ease-out forwards",
