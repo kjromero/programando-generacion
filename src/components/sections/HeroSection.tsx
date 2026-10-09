@@ -9,7 +9,7 @@ import { photos } from "@/content/generations";
 /** Real, verifiable facts used as the hero's proof strip. */
 const proofPoints = [
   { icon: MapPin, label: "Tenjo & Tabio, Cundinamarca" },
-  { icon: Sparkles, label: "Primera generación certificada en 2024" },
+  { icon: Sparkles, label: "Primera generación certificada en 2022" },
   { icon: Cpu, label: "micro:bit · MakeCode · IA" },
 ];
 
@@ -147,7 +147,7 @@ const HeroSection = () => {
               <p className="mt-0.5 font-display text-2xl font-bold text-foreground">
                 5 <span className="text-base font-semibold text-primary">graduados</span>
               </p>
-              <p className="mt-0.5 text-xs text-muted-foreground">Tenjo · 2024</p>
+              <p className="mt-0.5 text-xs text-muted-foreground">Tenjo · 2022</p>
             </motion.div>
           </motion.div>
         </div>

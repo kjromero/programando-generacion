@@ -4,9 +4,18 @@ import { CheckCircle2, MapPin, Quote } from "lucide-react";
 import PhotoImage from "@/components/PhotoImage";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
-import { generations } from "@/content/generations";
+import { generations, photos } from "@/content/generations";
 
 const [primera, segunda] = generations;
+
+/** Extra evidence from the ongoing generation, none of it reused above. */
+const galeriaActual = [
+  photos.jacKit,
+  photos.jacExplicacion,
+  photos.jacInstrucciones,
+  photos.jacMesa,
+  photos.jacPareja,
+];
 
 const GeneracionesSection = () => {
   return (
@@ -27,7 +36,7 @@ const GeneracionesSection = () => {
         />
 
         {/* =============================================================
-            Primera Generación — Tenjo 2024
+            Primera Generación — Tenjo 2022
             The photograph is the proof the program happened, so it stays
             visually dominant on every breakpoint.
            ============================================================= */}
@@ -145,15 +154,13 @@ const GeneracionesSection = () => {
         </article>
 
         {/* =============================================================
-            Segunda Generación — I.E.R.D.I. Valle de Tenjo 2026
+            Generación Actual — Escuela Jacalito e I.E.R.D.I. Valle de Tenjo
            ============================================================= */}
         <article className="mt-16 md:mt-24">
           <div className="grid items-stretch gap-10 lg:grid-cols-12 lg:gap-12">
             <div className="order-2 lg:order-1 lg:col-span-5">
               <Reveal>
-                <p className="eyebrow text-primary">
-                  {segunda.place} — {segunda.year}
-                </p>
+                <p className="eyebrow text-primary">{segunda.place}</p>
 
                 <h3 className="display-md mt-4 text-foreground">{segunda.title}</h3>
 
@@ -192,7 +199,6 @@ const GeneracionesSection = () => {
                 )}
               </Reveal>
             </div>
-
             <motion.figure
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -215,6 +221,23 @@ const GeneracionesSection = () => {
               </div>
             </motion.figure>
           </div>
+
+          {/* ------------------------------------------------- Gallery -- */}
+          <Reveal delay={0.1}>
+            <ul className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5 lg:gap-4">
+              {galeriaActual.map((photo) => (
+                <li
+                  key={photo.webp}
+                  className="overflow-hidden rounded-2xl border border-border bg-muted shadow-sm-soft"
+                >
+                  <PhotoImage
+                    photo={photo}
+                    className="aspect-[4/5] w-full transition-transform duration-[1.2s] ease-out hover:scale-[1.04]"
+                  />
+                </li>
+              ))}
+            </ul>
+          </Reveal>
         </article>
       </div>
     </section>

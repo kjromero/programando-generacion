@@ -5,7 +5,7 @@ import PhotoImage from "@/components/PhotoImage";
 import Reveal from "@/components/Reveal";
 import SectionHeading from "@/components/SectionHeading";
 import { cn } from "@/lib/utils";
-import { documentedWork, upcomingWorkNote } from "@/content/generations";
+import { documentedWork, sessionVideos, upcomingWorkNote } from "@/content/generations";
 
 const ProyectosSection = () => {
   return (
@@ -55,6 +55,10 @@ const ProyectosSection = () => {
                 <h3 className="font-display text-lg font-semibold leading-snug text-foreground">
                   {work.title}
                 </h3>
+
+                <p className="mt-2 text-xs font-medium uppercase tracking-[0.08em] text-primary">
+                  {work.school}
+                </p>
 
                 <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
                   {work.what}
@@ -121,6 +125,57 @@ const ProyectosSection = () => {
               </p>
             </div>
           </Reveal>
+        </div>
+
+        {/* =============================================================
+            Session clips — recorded during real sessions, re-encoded for
+            web. Muted + playsInline so they can autoplay on mobile.
+           ============================================================= */}
+        <div className="mt-16 md:mt-20">
+          <Reveal>
+            <h3 className="display-sm text-foreground">En movimiento</h3>
+            <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
+              Fragmentos grabados durante las sesiones. Sin montaje ni recreación:
+              es lo que pasa cuando el circuito por fin cierra.
+            </p>
+          </Reveal>
+
+          <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {sessionVideos.map((video, index) => (
+              <motion.li
+                key={video.id}
+                initial={{ opacity: 0, y: 22 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-60px" }}
+                transition={{ duration: 0.55, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                className="overflow-hidden rounded-3xl border border-border bg-card shadow-sm-soft"
+              >
+                <figure>
+                  <video
+                    className="aspect-[9/16] w-full bg-muted object-cover"
+                    src={video.src}
+                    poster={video.poster}
+                    width={video.width}
+                    height={video.height}
+                    controls
+                    muted
+                    loop
+                    playsInline
+                    preload="none"
+                    aria-label={video.caption}
+                  />
+                  <figcaption className="p-5">
+                    <p className="font-display text-base font-semibold text-foreground">
+                      {video.title}
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                      {video.caption}
+                    </p>
+                  </figcaption>
+                </figure>
+              </motion.li>
+            ))}
+          </ul>
         </div>
       </div>
     </section>

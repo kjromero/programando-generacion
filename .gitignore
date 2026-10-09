@@ -22,3 +22,10 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Material original de cámara (HEIC/vídeo sin comprimir).
+# Se conserva localmente; al sitio van las versiones JPG/WebP/MP4 optimizadas.
+src/assets/*.HEIC
+src/assets/*.heic
+src/assets/*.MOV
+src/assets/*.MP4

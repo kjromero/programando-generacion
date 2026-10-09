@@ -20,6 +20,20 @@ import escuela5Jpg from "@/assets/escuela2-5.jpeg";
 import escuela6Jpg from "@/assets/escuela2-6.jpeg";
 import escuela7Jpg from "@/assets/escuela2-7.jpeg";
 
+/* --- Escuela Jacalito (fotografías del año en curso) --------------------- */
+import jacCircuitoJpg from "@/assets/jacalito-circuito-encendido.jpg";
+import jacKitJpg from "@/assets/jacalito-tecpro-kit.jpg";
+import jacBitacoraJpg from "@/assets/jacalito-bitacora.jpg";
+import jacCirculoJpg from "@/assets/jacalito-circulo-mentor.jpg";
+import jacArmandoJpg from "@/assets/jacalito-armando-circuito.jpg";
+import jacManosJpg from "@/assets/jacalito-manos-conexion.jpg";
+import jacExposicionJpg from "@/assets/jacalito-exposicion.jpg";
+import jacMesaJpg from "@/assets/jacalito-circuito-mesa.jpg";
+import jacKitPisoJpg from "@/assets/jacalito-kit-piso.jpg";
+import jacInstruccionesJpg from "@/assets/jacalito-instrucciones.jpg";
+import jacParejaJpg from "@/assets/jacalito-pareja-kit.jpg";
+import jacExplicacionJpg from "@/assets/jacalito-explicacion-aula.jpg";
+
 /* --- Optimized WebP derivatives ------------------------------------------ */
 import tenjoDevWebp from "@/assets/optimized/students-tenjo-dev.webp";
 import escuela0Webp from "@/assets/optimized/escuela2-0.webp";
@@ -30,6 +44,19 @@ import escuela4Webp from "@/assets/optimized/escuela2-4.webp";
 import escuela5Webp from "@/assets/optimized/escuela2-5.webp";
 import escuela6Webp from "@/assets/optimized/escuela2-6.webp";
 import escuela7Webp from "@/assets/optimized/escuela2-7.webp";
+
+import jacCircuitoWebp from "@/assets/optimized/jacalito-circuito-encendido.webp";
+import jacKitWebp from "@/assets/optimized/jacalito-tecpro-kit.webp";
+import jacBitacoraWebp from "@/assets/optimized/jacalito-bitacora.webp";
+import jacCirculoWebp from "@/assets/optimized/jacalito-circulo-mentor.webp";
+import jacArmandoWebp from "@/assets/optimized/jacalito-armando-circuito.webp";
+import jacManosWebp from "@/assets/optimized/jacalito-manos-conexion.webp";
+import jacExposicionWebp from "@/assets/optimized/jacalito-exposicion.webp";
+import jacMesaWebp from "@/assets/optimized/jacalito-circuito-mesa.webp";
+import jacKitPisoWebp from "@/assets/optimized/jacalito-kit-piso.webp";
+import jacInstruccionesWebp from "@/assets/optimized/jacalito-instrucciones.webp";
+import jacParejaWebp from "@/assets/optimized/jacalito-pareja-kit.webp";
+import jacExplicacionWebp from "@/assets/optimized/jacalito-explicacion-aula.webp";
 
 export type Photo = {
   webp: string;
@@ -103,6 +130,92 @@ export const photos = {
     width: 960,
     height: 1280,
   },
+
+  /* --------------------------------- Escuela Jacalito, año en curso ----- */
+  jacCircuito: {
+    webp: jacCircuitoWebp,
+    fallback: jacCircuitoJpg,
+    alt: "Estudiantes de la Escuela Jacalito alrededor de una mesa con un circuito armado con el Sistema TecPro: los LED rojo, verde y azul encendidos iluminan sus manos.",
+    width: 900,
+    height: 1600,
+  },
+  jacKit: {
+    webp: jacKitWebp,
+    fallback: jacKitJpg,
+    alt: "Caja del Sistema TecPro sostenida en el aula de la Escuela Jacalito, con los estudiantes trabajando al fondo.",
+    width: 1200,
+    height: 1600,
+  },
+  jacBitacora: {
+    webp: jacBitacoraWebp,
+    fallback: jacBitacoraJpg,
+    alt: "Una estudiante examina un módulo electrónico mientras su bitácora TecPro reposa sobre el pupitre.",
+    width: 1600,
+    height: 1200,
+  },
+  jacCirculo: {
+    webp: jacCirculoWebp,
+    fallback: jacCirculoJpg,
+    alt: "El mentor del programa, sentado en el piso del aula, muestra un componente electrónico a un grupo de estudiantes de la Escuela Jacalito reunidos a su alrededor.",
+    width: 1600,
+    height: 1200,
+  },
+  jacArmando: {
+    webp: jacArmandoWebp,
+    fallback: jacArmandoJpg,
+    alt: "El mentor arma un circuito con los módulos del Sistema TecPro mientras los estudiantes observan de cerca, agachados a su alrededor.",
+    width: 1600,
+    height: 1200,
+  },
+  jacManos: {
+    webp: jacManosWebp,
+    fallback: jacManosJpg,
+    alt: "Primer plano de dos estudiantes conectando entre sí dos módulos electrónicos sobre la mesa de trabajo.",
+    width: 1599,
+    height: 899,
+  },
+  jacExposicion: {
+    webp: jacExposicionWebp,
+    fallback: jacExposicionJpg,
+    alt: "Una estudiante expone frente al tablero ante sus compañeros en el aula de la Escuela Jacalito.",
+    width: 1200,
+    height: 1600,
+  },
+  jacMesa: {
+    webp: jacMesaWebp,
+    fallback: jacMesaJpg,
+    alt: "Tres estudiantes observan el LED verde encendido del circuito que acaban de conectar sobre la mesa.",
+    width: 900,
+    height: 1600,
+  },
+  jacKitPiso: {
+    webp: jacKitPisoWebp,
+    fallback: jacKitPisoJpg,
+    alt: "Un estudiante sentado en el piso del aula sostiene el cableado junto a la caja abierta del Sistema TecPro con todos sus componentes.",
+    width: 1200,
+    height: 1600,
+  },
+  jacInstrucciones: {
+    webp: jacInstruccionesWebp,
+    fallback: jacInstruccionesJpg,
+    alt: "Varios estudiantes leen juntos, inclinados sobre la mesa, la guía ilustrada de componentes del Sistema TecPro antes de armar su circuito.",
+    width: 1599,
+    height: 899,
+  },
+  jacPareja: {
+    webp: jacParejaWebp,
+    fallback: jacParejaJpg,
+    alt: "Dos estudiantes trabajan juntos en el piso con la caja abierta del Sistema TecPro y su guía de componentes a la vista.",
+    width: 1200,
+    height: 1600,
+  },
+  jacExplicacion: {
+    webp: jacExplicacionWebp,
+    fallback: jacExplicacionJpg,
+    alt: "El mentor explica de pie la actividad del día al grupo completo, sentado en círculo en el aula.",
+    width: 1600,
+    height: 1200,
+  },
 } satisfies Record<string, Photo>;
 
 /* ------------------------------------------------------------ Generations - */
@@ -126,18 +239,18 @@ export type Generation = {
 
 export const generations: Generation[] = [
   {
-    id: "tenjo-2024",
+    id: "tenjo-2022",
     order: "01",
     title: "Primera Generación",
     place: "Tenjo, Cundinamarca",
-    year: "2024",
+    year: "2022",
     badge: "Programa Piloto Exitoso",
     highlightTitle: "Programa Piloto Exitoso",
     highlightBody:
-      "El municipio de Tenjo fue el primero en creer en nuestra visión. Estos jóvenes pioneros demostraron que el talento tecnológico no tiene fronteras geográficas.",
+      "El municipio de Tenjo fue el primero en creer en nuestra visión. Con el apoyo de la Secretaría de Educación de Tenjo, estos jóvenes pioneros demostraron que el talento tecnológico no tiene fronteras geográficas.",
     stats: [
       { value: "5", label: "Graduados" },
-      { value: "60", label: "Horas" },
+      { value: "40", label: "Horas" },
       { value: "100%", label: "Certificados" },
     ],
     photo: photos.tenjoDev,
@@ -154,21 +267,21 @@ export const generations: Generation[] = [
     },
   },
   {
-    id: "valle-de-tenjo-2026",
+    id: "generacion-actual",
     order: "02",
-    title: "Segunda Generación",
-    place: "I.E.R.D.I. Valle de Tenjo",
-    year: "2026",
+    title: "Generación Actual",
+    place: "Escuelas rurales de Tenjo",
+    year: "En curso",
     badge: "En curso",
     highlightTitle: "Del bloque al circuito",
     highlightBody:
-      "Un aula completa trabajando con placas micro:bit y el editor de bloques MakeCode sobre los portátiles de Computadores para Educar. Programan, cargan el código a la placa y ven el resultado encenderse en sus manos.",
+      "Hoy el programa se desarrolla en la Escuela Jacalito y en la I.E.R.D.I. Valle de Tenjo. Los estudiantes programan con micro:bit y MakeCode, y arman circuitos reales con el Sistema TecPro: conectan los módulos, los ven encenderse y registran cada avance en su bitácora.",
     stats: [
+      { value: "TecPro", label: "Sistema" },
       { value: "micro:bit", label: "Placa" },
       { value: "MakeCode", label: "Editor" },
-      { value: "Aula", label: "Modalidad" },
     ],
-    photo: photos.aulaCompleta,
+    photo: photos.jacArmando,
     note: "Generación en curso. Las cifras de graduados se publicarán al cierre del proceso.",
   },
 ];
@@ -183,6 +296,8 @@ export type DocumentedWork = {
   id: string;
   photo: Photo;
   title: string;
+  /** School where the session took place. */
+  school: string;
   /** What is actually happening in the session. */
   what: string;
   /** The learning problem the activity addresses. */
@@ -194,11 +309,82 @@ export type DocumentedWork = {
   span?: "wide" | "tall";
 };
 
+const VALLE = "I.E.R.D.I. Valle de Tenjo";
+const JACALITO = "Escuela Jacalito";
+
 export const documentedWork: DocumentedWork[] = [
+  {
+    id: "circuito-encendido",
+    photo: photos.jacCircuito,
+    title: "El circuito que se enciende",
+    school: JACALITO,
+    what:
+      "Los módulos del Sistema TecPro se encadenan sobre la mesa hasta cerrar el circuito: los LED rojo, verde y azul se encienden al mismo tiempo.",
+    problem: "Cómo conectar componentes para que la corriente recorra todo el montaje.",
+    tech: ["Sistema TecPro", "Circuitos", "LED"],
+    learning: "Que un circuito solo funciona si cada conexión está bien hecha.",
+  },
+  {
+    id: "kit-tecpro",
+    photo: photos.jacKitPiso,
+    title: "Reconocer los componentes",
+    school: JACALITO,
+    what:
+      "Antes de armar nada, el grupo abre la caja del Sistema TecPro e identifica uno a uno los módulos: fuente, interruptores, sensores y salidas.",
+    problem: "Qué hace cada pieza y para qué sirve antes de usarla.",
+    tech: ["Sistema TecPro", "Electrónica básica"],
+    learning: "Nombrar y clasificar los componentes con los que van a trabajar.",
+  },
+  {
+    id: "bitacora",
+    photo: photos.jacBitacora,
+    title: "Registrar en la bitácora",
+    school: JACALITO,
+    what:
+      "Cada estudiante examina su módulo y documenta lo que observa en la bitácora del programa, junto al montaje que acaba de probar.",
+    problem: "Cómo dejar registro de lo que se intentó, falló y funcionó.",
+    tech: ["Bitácora TecPro", "Documentación"],
+    learning: "Volver consciente el proceso, no solo el resultado.",
+  },
+  {
+    id: "mentoria-circulo",
+    photo: photos.jacCirculo,
+    title: "La clase en círculo",
+    school: JACALITO,
+    what:
+      "El mentor se sienta en el piso con el grupo y pone el componente en el centro: todos ven lo mismo y todos pueden preguntar.",
+    problem: "Cómo sostener la atención de un grupo de edades mezcladas.",
+    tech: ["Mentoría presencial", "Sistema TecPro"],
+    learning: "Observar, preguntar y formular una hipótesis antes de armar.",
+    span: "wide",
+  },
+  {
+    id: "conexion-modulos",
+    photo: photos.jacManos,
+    title: "Conectar módulo a módulo",
+    school: JACALITO,
+    what:
+      "Dos estudiantes acoplan las piezas del circuito, comprobando la polaridad y el orden de cada conexión.",
+    problem: "Por qué el orden y la orientación de las piezas cambian el resultado.",
+    tech: ["Sistema TecPro", "Trabajo en parejas"],
+    learning: "Probar, equivocarse y volver a intentar con criterio.",
+  },
+  {
+    id: "exposicion-tablero",
+    photo: photos.jacExposicion,
+    title: "Explicar lo construido",
+    school: JACALITO,
+    what:
+      "Una estudiante pasa al tablero a explicar a sus compañeros cómo resolvió el montaje de la sesión.",
+    problem: "Cómo comunicar una solución técnica a otras personas.",
+    tech: ["Exposición", "Trabajo en equipo"],
+    learning: "Poner en palabras el propio razonamiento.",
+  },
   {
     id: "logica-condicional",
     photo: photos.claseMakecode,
     title: "Lógica condicional en MakeCode",
+    school: VALLE,
     what:
       "La sesión arranca en la pantalla del aula: una variable, un ciclo y una cadena de condicionales que cambian el ícono mostrado en la placa.",
     problem:
@@ -211,6 +397,7 @@ export const documentedWork: DocumentedWork[] = [
     id: "del-codigo-a-la-placa",
     photo: photos.microbitConexion,
     title: "Del código a la placa",
+    school: VALLE,
     what:
       "Una estudiante conecta su micro:bit al portátil y carga el programa que acaba de armar con bloques.",
     problem: "Qué hace falta para que algo escrito en pantalla ocurra en el mundo físico.",
@@ -221,6 +408,7 @@ export const documentedWork: DocumentedWork[] = [
     id: "resultado-encendido",
     photo: photos.microbitEncendida,
     title: "El resultado, encendido",
+    school: VALLE,
     what:
       "La matriz de LED de la placa muestra el patrón programado. El código deja de ser abstracto y se vuelve evidencia.",
     problem: "Cómo saber si lo que programé realmente funciona.",
@@ -231,6 +419,7 @@ export const documentedWork: DocumentedWork[] = [
     id: "programar-en-equipo",
     photo: photos.grupoCodigo,
     title: "Programar en equipo",
+    school: VALLE,
     what:
       "Varias estudiantes resuelven el mismo reto alrededor de un portátil, repartiéndose la placa, el editor y las pruebas.",
     problem: "Cómo construir algo que ninguna resolvería sola en el mismo tiempo.",
@@ -242,6 +431,7 @@ export const documentedWork: DocumentedWork[] = [
     id: "acompanamiento-en-aula",
     photo: photos.mentoriaGrupo,
     title: "Acompañamiento en el aula",
+    school: VALLE,
     what:
       "El mentor pasa grupo por grupo: no entrega la respuesta, formula la pregunta que destraba el problema.",
     problem: "Cómo sostener el avance de un aula entera con ritmos muy distintos.",
@@ -252,11 +442,63 @@ export const documentedWork: DocumentedWork[] = [
     id: "seguir-el-ejercicio",
     photo: photos.aulaPantalla,
     title: "Del tablero al portátil",
+    school: VALLE,
     what:
       "El ejercicio proyectado se replica en cada equipo, con la placa conectada y lista para recibir el programa.",
     problem: "Cómo pasar de ver un ejemplo a producir una versión propia.",
     tech: ["MakeCode", "micro:bit", "Aula digital"],
     learning: "Reproducir, modificar y luego extender un ejemplo.",
+  },
+];
+
+/* --------------------------------------------- Session videos (real) ----- */
+/**
+ * Short clips recorded during real sessions, re-encoded for web.
+ * They live in `public/media` so they keep a stable, unhashed URL.
+ */
+
+export type SessionVideo = {
+  id: string;
+  src: string;
+  poster: string;
+  title: string;
+  caption: string;
+  width: number;
+  height: number;
+};
+
+const mediaUrl = (file: string) => `${import.meta.env.BASE_URL}media/${file}`;
+
+export const sessionVideos: SessionVideo[] = [
+  {
+    id: "circuito",
+    src: mediaUrl("jacalito-circuito.mp4"),
+    poster: mediaUrl("jacalito-circuito-poster.webp"),
+    title: "El momento en que enciende",
+    caption:
+      "Escuela Jacalito: el circuito completo del Sistema TecPro encendido sobre la mesa de trabajo.",
+    width: 406,
+    height: 720,
+  },
+  {
+    id: "construccion",
+    src: mediaUrl("jacalito-construccion.mp4"),
+    poster: mediaUrl("jacalito-construccion-poster.webp"),
+    title: "Armando entre todos",
+    caption:
+      "Escuela Jacalito: el grupo encadena los módulos uno a uno hasta completar el montaje.",
+    width: 406,
+    height: 720,
+  },
+  {
+    id: "conexion",
+    src: mediaUrl("jacalito-conexion.mp4"),
+    poster: mediaUrl("jacalito-conexion-poster.webp"),
+    title: "Cerrar la conexión",
+    caption:
+      "Escuela Jacalito: una estudiante ajusta la última conexión del circuito en el piso del aula.",
+    width: 406,
+    height: 720,
   },
 ];
 
@@ -282,10 +524,10 @@ export const verifiedImpact: ImpactFigure[] = [
   {
     value: "5",
     label: "Graduados certificados",
-    detail: "Primera generación de Tenjo Dev, 2024.",
+    detail: "Primera generación de Tenjo Dev, 2022.",
   },
   {
-    value: "60",
+    value: "40",
     label: "Horas de formación",
     detail: "Duración certificada del programa piloto.",
   },
